@@ -11,5 +11,5 @@ def home(request, username=None, template_name='home.html'):
             Home object list
     """
     return render(request, template_name, {
-        'photo_promo': '',
+        'title': 'Total Feeling Crew',
     })
