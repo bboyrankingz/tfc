@@ -75,9 +75,10 @@
 
     {% block intro_body %}
         <!-- Intro Header -->
-        <header class="intro">
+        <header class="intro" id="vid_promo">
             <div class="intro-body">
                 <div class="container">
+                    <a id="bgndVideo" class="player" data-property="{videoURL:'https://www.youtube.com/watch?v=QUOsEQXOwCo',containment:'#vid_promo', ratio:'16/9', autoPlay:true, mute:true, startAt:0, stopAt:240, opacity:1, loop:false, gaTrack:false, showYTLogo:false, showControls:false}"></a>
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2">
                             <h1 class="brand-heading">{% block title %}{% endblock %}</h1>
@@ -177,6 +178,12 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
 
     {% block more_javascript_after %}
+        <script src="/site_media/static/bower_components/jquery.mb.ytplayer/inc/jquery.mb.YTPlayer.js"></script>
+        <script type="text/javascript">
+          jQuery(document).ready(function($) {
+                $(".player").mb_YTPlayer();
+            });
+        </script>
     {% endblock %}
 
     <!-- Custom Theme JavaScript -->
