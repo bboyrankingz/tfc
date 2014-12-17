@@ -1,0 +1,20 @@
+{% load endless %}
+{% paginate 16 object_list %}
+{% get_pages %}
+{% for object in object_list %}
+  <div class="col-sm-6 col-md-3">
+    <a href="{{ object.get_absolute_url }}" class="thumbnail video-list-thumbs" title="{{ object.title|title }}">
+        <img style="width: 480px; height: 181px;" data-src="holder.js/300x200" src="{% if object.thumbnail_url%}{{ object.thumbnail_url }}{%else%}http://i.ytimg.com/vi/w/hqdefault.jpg{%endif%}"/>
+        {% if object.media_type = 'video'%}<span class="glyphicon glyphicon-play-circle"></span>{%endif%}
+        {% if object.media_type = 'rich'%}<span class="glyphicon glyphicon-music"></span>{%endif%}
+        {% if object.media_type = 'photo'%}<span class="glyphicon glyphicon-camera"></span>{%endif%}
+    </a>
+    <div class="caption">
+      <h5><a href="{{ object.get_absolute_url }}" title="{{ object.title|title }}">{{ object.title|title|truncatechars:35}}</a></h5>
+      <h6>{{ object.created|timesince }} ago</h6>
+    </div>
+  </div>
+{% empty %}
+  Sorry, no media in this list!
+{% endfor %}
+{% show_more %}

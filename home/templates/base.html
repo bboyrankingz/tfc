@@ -80,7 +80,7 @@
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <h1 class="brand-heading">{% block title %}{% endblock %}</h1>
-                        <p class="intro-text">Welcome to the french flava.<br>Peace.</p>
+                        <p class="intro-text">{% block intro %}Welcome to the french flava.<br>Peace.{% endblock %}</p>
                         <a href="#about" class="btn btn-circle page-scroll">
                             <i class="fa fa-angle-double-down animated"></i>
                         </a>
@@ -92,62 +92,73 @@
 
     <!-- About Section -->
     <section id="about" class="container content-section text-center">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <h2>About Total Feeling Crew</h2>
-                <p>Since 2002....</p>
-                <p>From Seine Saint Denis....</p>
-                <p>Now fuck...</p>
+        {% block container %}
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h2>About Total Feeling Crew</h2>
+                    <p>Since 2002....</p>
+                    <p>From Seine Saint Denis....</p>
+                    <p>Now fuck...</p>
+                </div>
             </div>
-        </div>
+        {% endblock %}
     </section>
 
     {% block members %}{% endblock %}
 
-    <!-- Footage Section -->
-    <section id="footage" class="content-section text-center">
-        <div class="download-section">
+    {% block media %}
+        <!-- Footage Section -->
+        <section id="footage" class="content-section text-center">
             <div class="container">
-                <div class="col-lg-8 col-lg-offset-2">
+                <div class="col-lg-12">
                     <h2>Footage</h2>
-                    <p>List</p>
+                    {% include "base_thumbnail_page.html" %}
+                </div>
+                    <hr/>
+                    <a type="button" class="btn btn-default" href="{% url 'media_list' %}">More media</a>
+            </div>
+        </section>
+    {% endblock %}
+
+    {% block contact %}
+        <!-- Contact Section -->
+        <section id="contact" class="container content-section text-center">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h2>Contact</h2>
+                    <p>Feel free to email us...</p>
+                    <p><a href="mailto:bboy.stats@gmail.com">bboy.stats@gmail.com</a>
+                    </p>
+                    <ul class="list-inline banner-social-buttons">
+                        <li>
+                            <a href="https://twitter.com/bboyrankingz" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/bboyrankingz" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/pages/Total-Feeling-Crew/7585938274" class="btn btn-default btn-lg"><i class="fa fa-google-plus fa-fw"></i> <span class="network-name">Facebook</span></a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    {% endblock %}
 
-    <!-- Contact Section -->
-    <section id="contact" class="container content-section text-center">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <h2>Contact</h2>
-                <p>Feel free to email us...</p>
-                <p><a href="mailto:bboy.stats@gmail.com">bboy.stats@gmail.com</a>
-                </p>
-                <ul class="list-inline banner-social-buttons">
-                    <li>
-                        <a href="https://twitter.com/bboyrankingz" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
-                    </li>
-                    <li>
-                        <a href="https://github.com/bboyrankingz" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
-                    </li>
-                    <li>
-                        <a href="https://www.facebook.com/pages/Total-Feeling-Crew/7585938274" class="btn btn-default btn-lg"><i class="fa fa-google-plus fa-fw"></i> <span class="network-name">Facebook</span></a>
-                    </li>
-                </ul>
+    {% block map %}
+        <!-- Map Section -->
+        <div id="map"></div>
+    {% endblock %}
+
+    {% block footer %} 
+        <!-- Footer -->
+        <footer>
+            <div class="container text-center">
+                <p>Copyright &copy; Total Feeling Crew by Bboyrankingz 2014</p>
             </div>
-        </div>
-    </section>
+        </footer>
+    {% endblock %}
 
-    <!-- Map Section -->
-    <div id="map"></div>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container text-center">
-            <p>Copyright &copy; Total Feeling Crew by Bboyrankingz 2014</p>
-        </div>
-    </footer>
 
     <!-- jQuery -->
     <script src="/site_media/static/bower_components/jquery/dist/jquery.min.js"></script>
@@ -162,6 +173,9 @@
 
     <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
+
+    {% block more_javascript_after %}
+    {% endblock %}
 
     <!-- Custom Theme JavaScript -->
     <script src="/site_media/static/js/grayscale.js"></script>
