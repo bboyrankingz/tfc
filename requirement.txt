@@ -1,8 +1,0 @@
-psycopg2
-python-dateutil
-django-taggit
-micawber
-django-tinymce
-pillow
-django-endless-pagination
-
