@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="tfc">
 
 <head>
 
@@ -115,12 +115,39 @@
     </section>
 
     <!-- Footage Section -->
-    <section id="footage" class="content-section text-center">
+    <section id="footage" ng-controller="Media" class="content-section text-center">
         <div class="container">
             <div class="col-lg-12">
                 <h2>Footage</h2>
             </div>
-             <p>In Progress...</p>
+            <div infinite-scroll='reddit.nextPage()' infinite-scroll-disabled='reddit.busy' infinite-scroll-distance='1' ng-cloak>
+                <div ng-repeat="group in (reddit.items | groupBy: 'created | amTimeAgo' | toArray:true | orderBy:'created')">
+                    <div class="row">
+                      <div class="col-md-12"><h3><b><i class="fa fa-calendar"></i> {{ group.$key }}</b></h3></div>
+                    </div>
+                    <hr/>
+                    <div class="col-sm-6 col-md-3" ng-repeat="media in group">
+                      <div class="media">
+                        <a ng-href="{{ media.get_absolute_url }}" class="thumbnail video-list-thumbs" title="{{ media.title }}">
+                          <img style="width: 480px; height: 181px;" ng-src="{{ media.thumbnail_url }}"/>
+                          <div ng-switch="media.media_type">
+                            <span ng-switch-default class="glyphicon glyphicon-play-circle"></span>
+                            <span ng-switch-when="rich" class="glyphicon glyphicon-music"></span>
+                            <span ng-switch-when="photo" class="glyphicon glyphicon-camera"></span>
+                          </div>
+                        </a>
+                        <div class="caption">
+                          <h5 style="margin-top:-10px">
+                            <a ng-href="{{ media.get_absolute_url }}" title="{{ media.title }}">{{ media.title | characters:30}}</a>
+                          </h5>
+                          <h6 style="margin-top:-5px">by <a ng-href="{{ media.user_get_absolute_url }}">{{ media.submitted_by }}</a></h6>
+                        </div>
+                        <div style='clear: both;'></div>
+                      </div>
+                    </div>
+                    </div>
+                <div ng-show='reddit.busy'>Loading data...</div>
+            </div>
             <a type="button" class="btn btn-default" href="">More media</a>
         </div>
     </section>
@@ -158,13 +185,23 @@
         </div>
     </footer>
 
-
     <!-- jQuery -->
     <script src="site_media/static/bower_components/jquery/dist/jquery.min.js"></script>
-
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
     <script src="site_media/static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="site_media/static/js/grayscale.js"></script>
+
+
+    <script src="site_media/static/bower_components/angular/angular.min.js"></script>
+    <script src="site_media/static/bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min.js"></script>
+    <script src="site_media/static/js/media.js"></script>
+    <script src="site_media/static/js/reddit.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-filter/0.4.7/angular-filter.js"></script>
+    <script src="site_media/static/bower_components/angular-truncate/src/truncate.js"></script>
+    <script src="site_media/static/bower_components/moment/min/moment.min.js"></script>
+    <script src="site_media/static/bower_components/angular-moment/angular-moment.min.js"></script>
 
 
     <!-- Plugin JavaScript -->
@@ -180,8 +217,7 @@
         });
     </script>
 
-    <!-- Custom Theme JavaScript -->
-    <script src="site_media/static/js/grayscale.js"></script>
+
 
 </body>
 
