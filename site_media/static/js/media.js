@@ -19,8 +19,7 @@ app.controller("Media", function($scope, $http, Reddit) {
           yy: "%d years ago"
       }
   });
-  $scope.reddit = new Reddit('http://localhost:8000/media/search/total%20feeling%20crew/.json');
-  console.log($scope.reddit)
+  $scope.reddit = new Reddit('http://bboyrankingz.com/media/search/total%20feeling%20crew/.json');
 });
 
 
