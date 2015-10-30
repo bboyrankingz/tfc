@@ -1,6 +1,6 @@
-var app = angular.module("tfc", ['infinite-scroll', 'angularMoment']);
+var app = angular.module("tfc", ['infinite-scroll', 'angular.filter', 'truncate', 'angularMoment']);
 
-app.controller("Media", function($scope) {
+app.controller("Media", function($scope, $http, Reddit) {
 
   moment.locale('en', {
       relativeTime : {
@@ -19,7 +19,8 @@ app.controller("Media", function($scope) {
           yy: "%d years ago"
       }
   });
-  $scope.reddit = new Reddit('localhost:8000/media/search/total%20feeling%20crew/.json');
+  $scope.reddit = new Reddit('http://localhost:8000/media/search/total%20feeling%20crew/.json');
+  console.log($scope.reddit)
 });
 
 
