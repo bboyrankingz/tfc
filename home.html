@@ -20,7 +20,7 @@
 
     <!-- Custom Fonts -->
     <link rel="stylesheet" href="site_media/static/bower_components/font-awesome/css/font-awesome.min.css">
-    
+
     <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
 
@@ -137,7 +137,7 @@
                     <hr/>
                     <div class="col-sm-6 col-md-3" ng-repeat="media in group">
                       <div class="media">
-                        <a ng-href="{{ media.get_absolute_url }}" class="thumbnail video-list-thumbs" title="{{ media.title }}">
+                        <a ng-href="#myModal" ng-click="open(media.id)" class="thumbnail video-list-thumbs" title="{{ media.title }}" data-toggle="modal">
                           <img style="width: 480px; height: 181px;" ng-src="{{ media.thumbnail_url }}"/>
                           <div ng-switch="media.media_type">
                             <span ng-switch-default class="glyphicon glyphicon-play-circle"></span>
@@ -156,7 +156,7 @@
                     </div>
                 <div ng-show='reddit.busy'>Loading data...</div>
             </div>
-            <a type="button" class="btn btn-default" href="">More media</a>
+            <!-- <a type="button" class="btn btn-default" href="">More media</a> -->
         </div>
     </section>
 
