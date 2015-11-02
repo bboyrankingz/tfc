@@ -21,6 +21,11 @@ app.controller("Media", function($scope, $http, Reddit, $sce) {
   });
   $scope.reddit = new Reddit('http://bboyrankingz.com/media/search/total%20feeling%20crew/.json');
 
+  $http.get('http://bboyrankingz.com//crews/members/total-feeling-crew/.json').
+    success(function(data, status, headers, config) {
+      $scope.members = data["results"];
+    });
+
  $scope.open = function(id) {
     $http.get('http://bboyrankingz.com/media/embed/' + id).
     success(function(data, status, headers, config) {
