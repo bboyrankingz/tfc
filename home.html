@@ -120,6 +120,15 @@
             <div class="col-lg-12">
                 <h2>Footage</h2>
             </div>
+            <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div ng-bind-html="embed"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div infinite-scroll='reddit.nextPage()' infinite-scroll-disabled='reddit.busy' infinite-scroll-distance='1' ng-cloak>
                 <div ng-repeat="group in (reddit.items | groupBy: 'created | amTimeAgo' | toArray:true | orderBy:'created')">
                     <div class="row">
@@ -138,9 +147,8 @@
                         </a>
                         <div class="caption">
                           <h5 style="margin-top:-10px">
-                            <a ng-href="{{ media.get_absolute_url }}" title="{{ media.title }}">{{ media.title | characters:30}}</a>
+                            <a ng-href="#myModal" ng-click="open(media.id)" title="{{ media.title }}" data-toggle="modal">{{ media.title | characters:30}}</a>
                           </h5>
-                          <h6 style="margin-top:-5px">by <a ng-href="{{ media.user_get_absolute_url }}">{{ media.submitted_by }}</a></h6>
                         </div>
                         <div style='clear: both;'></div>
                       </div>

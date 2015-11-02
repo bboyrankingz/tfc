@@ -1,6 +1,6 @@
 var app = angular.module("tfc", ['infinite-scroll', 'angular.filter', 'truncate', 'angularMoment']);
 
-app.controller("Media", function($scope, $http, Reddit) {
+app.controller("Media", function($scope, $http, Reddit, $sce) {
 
   moment.locale('en', {
       relativeTime : {
@@ -20,6 +20,14 @@ app.controller("Media", function($scope, $http, Reddit) {
       }
   });
   $scope.reddit = new Reddit('http://bboyrankingz.com/media/search/total%20feeling%20crew/.json');
+
+ $scope.open = function(id) {
+    $http.get('http://bboyrankingz.com/media/embed/' + id).
+    success(function(data, status, headers, config) {
+      $scope.embed = $sce.trustAsHtml(data);
+    });
+  };
+
 });
 
 
