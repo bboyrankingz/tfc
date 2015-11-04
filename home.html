@@ -74,10 +74,10 @@
     </nav>
 
     <!-- Intro Header -->
-    <header class="intro" id="vid_promo">
+    <header class="intro" ng-class="intro" id="vid_promo">
         <div class="intro-body">
             <div class="container">
-                <a id="bgndVideo" class="player" data-property="{videoURL:'https://www.youtube.com/watch?v=QUOsEQXOwCo',containment:'#vid_promo', ratio:'16/9', autoPlay:true, mute:true, startAt:0, stopAt:240, opacity:1, loop:false, gaTrack:false, showYTLogo:false, showControls:false}"></a>
+                <a id="bgndVideo" class="" ng-class="player" data-property="{videoURL:'https://www.youtube.com/watch?v=QUOsEQXOwCo',containment:'#vid_promo', ratio:'16/9', autoPlay:true, mute:true, startAt:0, stopAt:240, opacity:1, loop:false, gaTrack:false, showYTLogo:false, showControls:false}"></a>
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <h1 class="brand-heading"></h1>
@@ -110,27 +110,11 @@
                 <div class="col-lg-8" ng-repeat="member in members">
                     <div class="media">
                       <h3 class="pull-left media-heading">
-                        <a ng-click="show_member(member.slug)">{{ member.name}}</a>
+                        <a href="#vid_promo" class="btn btn-circle page-scroll" ng-click="show_member(member.slug)">{{ member.name}}</a>
                       </h3>
                     </div>
                 </div>
             </div>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
         </div>
     </section>
 

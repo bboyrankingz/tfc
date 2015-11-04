@@ -131,6 +131,30 @@ a:focus {
     }
 }
 
+.tfc {
+    background: url(../img/tfc_win.jpg) no-repeat bottom center scroll;
+}
+
+.kingtan {
+    background: url(../img/tan.jpg) no-repeat bottom center scroll;
+}
+
+.bruce-wayne {
+    background: url(../img/bruce.jpg) no-repeat bottom center scroll;
+}
+
+.john-smith {
+    background: url(../img/john.jpg) no-repeat bottom center scroll;
+}
+
+.woody {
+    background: url(../img/woody.jpg) no-repeat bottom center scroll;
+}
+
+.yung {
+    background: url(../img/yung.jpg) no-repeat bottom center scroll;
+}
+
 .intro {
     display: table;
     width: 100%;
@@ -138,7 +162,6 @@ a:focus {
     padding: 100px 0;
     text-align: center;
     color: #fff;
-    background: url(../img/tfc_win.jpg) no-repeat bottom center scroll;
     background-color: #000;
     -webkit-background-size: cover;
     -moz-background-size: cover;

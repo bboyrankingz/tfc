@@ -20,6 +20,7 @@ app.controller("Media", function($scope, $http, Reddit, $sce) {
       }
   });
   $scope.reddit = new Reddit('http://bboyrankingz.com/media/search/total%20feeling%20crew/.json');
+  $scope.intro = "tfc"
 
   $http.get('http://bboyrankingz.com/crews/members/total-feeling-crew/.json').
     success(function(data, status, headers, config) {
@@ -34,7 +35,7 @@ app.controller("Media", function($scope, $http, Reddit, $sce) {
   };
 
   $scope.show_member = function(slug) {
-    console.log(slug)
+    $scope.intro = slug
     $scope.reddit = new Reddit('http://bboyrankingz.com/media/search/' + slug + '/.json');
     $scope.reddit.nextPage();
     
