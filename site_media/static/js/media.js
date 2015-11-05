@@ -21,6 +21,8 @@ app.controller("Media", function($scope, $http, Reddit, $sce) {
   });
   $scope.reddit = new Reddit('http://bboyrankingz.com/media/search/total%20feeling%20crew/.json');
   $scope.intro = "tfc"
+  $scope.player = "player"
+
 
   $http.get('http://bboyrankingz.com/crews/members/total-feeling-crew/.json').
     success(function(data, status, headers, config) {
@@ -28,6 +30,7 @@ app.controller("Media", function($scope, $http, Reddit, $sce) {
     });
 
  $scope.open = function(id) {
+    $('#bgndVideo').playerDestroy();
     $http.get('http://bboyrankingz.com/media/embed/' + id).
     success(function(data, status, headers, config) {
       $scope.embed = $sce.trustAsHtml(data);
@@ -35,7 +38,9 @@ app.controller("Media", function($scope, $http, Reddit, $sce) {
   };
 
   $scope.show_member = function(slug) {
+    $('#bgndVideo').playerDestroy();
     $scope.intro = slug
+    $scope.player = ""
     $scope.reddit = new Reddit('http://bboyrankingz.com/media/search/' + slug + '/.json');
     $scope.reddit.nextPage();
     

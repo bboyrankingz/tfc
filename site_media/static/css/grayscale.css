@@ -147,6 +147,10 @@ a:focus {
     background: url(../img/john.jpg) no-repeat bottom center scroll;
 }
 
+.just-gary {
+    background: url(../img/gary.jpg) no-repeat bottom center scroll;
+}
+
 .woody {
     background: url(../img/woody.jpg) no-repeat bottom center scroll;
 }
