@@ -24,7 +24,7 @@ app.controller("Media", function($scope, $http, Reddit, $sce) {
   $scope.player = "player"
 
 
-  $http.get('http://localhost:8000/crews/apis/total-feeling-crew/.json').
+  $http.get('http://bboyrankingz.com/crews/apis/total-feeling-crew/.json').
     success(function(data, status, headers, config) {
       $scope.object = data;
       console.log(data["tournamentroundplayers_set"])
@@ -45,7 +45,7 @@ app.controller("Media", function($scope, $http, Reddit, $sce) {
     $('#bgndVideo').playerDestroy();
     $scope.intro = slug
     $scope.player = ""
-    $http.get('http://localhost:8000/bboys/apis/' + slug + '/.json').
+    $http.get('http://bboyrankingz.com/bboys/apis/' + slug + '/.json').
     success(function(data, status, headers, config) {
       $scope.results = data["tournamentroundplayers_set"];
       $scope.description = $sce.trustAsHtml(data["description"])
