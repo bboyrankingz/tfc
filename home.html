@@ -61,7 +61,7 @@
                         <a class="page-scroll" href="#members">Members</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#footage">Footage</a>
+                        <a class="page-scroll" href="#footage">Footage <span class="badge">{{reddit.count}}</span></a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#contact">Contact</a>
@@ -94,12 +94,12 @@
     <!-- About Section -->
     <section id="about" class="container content-section text-center">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
+            <div>
                 <h2>About {{object.title}}</h2>
                 <p ng-bind-html="description"></p>
                 <div class="pull-left">
                 <h3>Awards</h3>
-                <ul ng-repeat="result in results track by $index">
+                <ul class="list-unstyled" ng-repeat="result in results track by $index">
                     <li ng-show="result != null">{{ result}}</li>
                 </ul>
                 </div>
@@ -129,11 +129,11 @@
             <div class="col-lg-12">
                 <h2>Footage</h2>
             </div>
-            <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
+            <div id="myModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-body">
-                            <div ng-bind-html="embed"></div>
+                            <div class="embed-responsive embed-responsive-16by9" ng-bind-html="embed"></div>
                         </div>
                     </div>
                 </div>
