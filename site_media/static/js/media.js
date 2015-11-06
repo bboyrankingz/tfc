@@ -24,9 +24,13 @@ app.controller("Media", function($scope, $http, Reddit, $sce) {
   $scope.player = "player"
 
 
-  $http.get('http://bboyrankingz.com/crews/members/total-feeling-crew/.json').
+  $http.get('http://localhost:8000/crews/apis/total-feeling-crew/.json').
     success(function(data, status, headers, config) {
-      $scope.members = data["results"];
+      $scope.object = data;
+      console.log(data["tournamentroundplayers_set"])
+      $scope.description = $sce.trustAsHtml(data["description"])
+      $scope.members = data["group_members"];
+      $scope.results = data["tournamentroundplayers_set"];
     });
 
  $scope.open = function(id) {
@@ -37,11 +41,17 @@ app.controller("Media", function($scope, $http, Reddit, $sce) {
     });
   };
 
-  $scope.show_member = function(slug) {
+  $scope.show_member = function(slug, title) {
     $('#bgndVideo').playerDestroy();
     $scope.intro = slug
     $scope.player = ""
-    $scope.reddit = new Reddit('http://bboyrankingz.com/media/search/' + slug + '/.json');
+    $http.get('http://localhost:8000/bboys/apis/' + slug + '/.json').
+    success(function(data, status, headers, config) {
+      $scope.results = data["tournamentroundplayers_set"];
+      $scope.description = $sce.trustAsHtml(data["description"])
+      $scope.object = data;
+    });
+    $scope.reddit = new Reddit('http://bboyrankingz.com/media/search/' + title + '/.json');
     $scope.reddit.nextPage();
     
   };
