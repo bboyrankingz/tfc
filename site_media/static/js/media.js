@@ -27,7 +27,6 @@ app.controller("Media", function($scope, $http, Reddit, $sce) {
   $http.get('http://bboyrankingz.com/crews/apis/total-feeling-crew/.json').
     success(function(data, status, headers, config) {
       $scope.object = data;
-      console.log(data["tournamentroundplayers_set"])
       $scope.description = $sce.trustAsHtml(data["description"])
       $scope.members = data["group_members"];
       $scope.results = data["tournamentroundplayers_set"];
