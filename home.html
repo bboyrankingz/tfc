@@ -162,7 +162,9 @@
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-body">
-                            <div class="embed-responsive embed-responsive-16by9" ng-bind-html="embed"></div>
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <youtube-video video-url="url"></youtube-video>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -175,7 +177,7 @@
                     <hr/>
                     <div class="col-sm-6 col-md-3" ng-repeat="media in group">
                       <div class="media">
-                        <a ng-href="#myModal" ng-click="open(media.id)" class="thumbnail video-list-thumbs" title="{{ media.title }}" data-toggle="modal">
+                        <a ng-href="#myModal" ng-click="open(media.url)" class="thumbnail video-list-thumbs" title="{{ media.title }}" data-toggle="modal">
                           <img style="width: 480px; height: 181px;" ng-src="{{ media.thumbnail_url }}"/>
                           <div ng-switch="media.media_type">
                             <span ng-switch-default class="glyphicon glyphicon-play-circle"></span>
@@ -217,6 +219,9 @@
     <script src="site_media/static/bower_components/angular-truncate/src/truncate.js"></script>
     <script src="site_media/static/bower_components/moment/min/moment.min.js"></script>
     <script src="site_media/static/bower_components/angular-moment/angular-moment.min.js"></script>
+    <!-- Include YT library and this directive -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="site_media/static/bower_components/angular-youtube-mb/dist/angular-youtube-embed.min.js"></script>
 
 
     <!-- Plugin JavaScript -->

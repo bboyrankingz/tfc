@@ -1,4 +1,4 @@
-var app = angular.module("tfc", ['infinite-scroll', 'angular.filter', 'truncate', 'angularMoment']);
+var app = angular.module("tfc", ['infinite-scroll', 'angular.filter', 'truncate', 'angularMoment', 'youtube-embed']);
 
 app.controller("Media", function($scope, $http, Reddit, $sce) {
 
@@ -32,12 +32,9 @@ app.controller("Media", function($scope, $http, Reddit, $sce) {
       $scope.results = data["tournamentroundplayers_set"];
     });
 
- $scope.open = function(id) {
+ $scope.open = function(url) {
     $('#bgndVideo').playerDestroy();
-    $http.get('http://bboyrankingz.com/media/embed/' + id).
-    success(function(data, status, headers, config) {
-      $scope.embed = $sce.trustAsHtml(data);
-    });
+    $scope.url = url;
   };
 
   $scope.show_member = function(slug, title) {
