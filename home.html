@@ -178,7 +178,7 @@
                     <div class="col-sm-6 col-md-3" ng-repeat="media in group">
                       <div class="media">
                         <a ng-href="#myModal" ng-click="open(media.url)" class="thumbnail video-list-thumbs" title="{{ media.title }}" data-toggle="modal">
-                          <img style="width: 480px; height: 181px;" ng-src="{{ media.thumbnail_url }}"/>
+                          <img style="width: 480px; height: 181px;" ng-src="{{ media.thumbnail }}"/>
                           <div ng-switch="media.media_type">
                             <span ng-switch-default class="glyphicon glyphicon-play-circle"></span>
                             <span ng-switch-when="rich" class="glyphicon glyphicon-music"></span>
