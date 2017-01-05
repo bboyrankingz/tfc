@@ -7,8 +7,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Welcome to Total Feeling website">
+    <meta name="author" content="bboyrankingz">
+    <meta property="og:image" content="site_media/static/img/tfc_clan.jpg">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@bboyrankingz" />
+    <meta name="twitter:creator" content="@bboyrankingz" />
+    <meta name="twitter:title" content="LCB CHOOSE YOUR DESTINY 6 !" />
+    <meta name="twitter:description" content="Welcome to Total Feeling website" />
+    <meta name="twitter:image:src" content="site_media/static/img/tfc_clan.jpg">
 
     <title>Total Feeling Crew</title>
 
@@ -61,10 +68,7 @@
                         <a class="page-scroll" href="#members">Members</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#footage">Footage</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#contact">Contact</a>
+                        <a class="page-scroll" href="#footage">Footage <span class="badge">{{reddit.count}}</span></a>
                     </li>
                 </ul>
             </div>
@@ -74,13 +78,13 @@
     </nav>
 
     <!-- Intro Header -->
-    <header class="intro" id="vid_promo">
+    <header class="intro" ng-class="intro" id="vid_promo">
         <div class="intro-body">
             <div class="container">
-                <a id="bgndVideo" class="player" data-property="{videoURL:'https://www.youtube.com/watch?v=QUOsEQXOwCo',containment:'#vid_promo', ratio:'16/9', autoPlay:true, mute:true, startAt:0, stopAt:240, opacity:1, loop:false, gaTrack:false, showYTLogo:false, showControls:false}"></a>
+                <a id="bgndVideo" class="player" data-property="{videoURL:'QUOsEQXOwCo',containment:'#vid_promo', ratio:'16/9', autoPlay:true, mute:true, startAt:0, stopAt:240, opacity:1, loop:false, gaTrack:false, showYTLogo:false, showControls:false}"></a>
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
-                        <h1 class="brand-heading"></h1>
+                        <h1 class="brand-heading">{{object.title}}</h1>
                         <p class="intro-text">Welcome to total feeling official website</p>
                         <a href="#about" class="btn btn-circle page-scroll">
                             <i class="fa fa-angle-double-down animated"></i>
@@ -94,11 +98,40 @@
     <!-- About Section -->
     <section id="about" class="container content-section text-center">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <h2>About Total Feeling Crew</h2>
-                <p>Since 2002....</p>
-                <p>From Seine Saint Denis....</p>
-                <p>In Progress...</p>
+            <div>
+                <h2>About {{object.title}}</h2>
+                <ul class="list-inline banner-social-buttons">
+                    <li>
+                        <a href="https://twitter.com/bboyrankingz" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/bboyrankingz" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com/pages/Total-Feeling-Crew/7585938274" class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
+                    </li>
+                </ul>
+                <br/>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Awards</h3>
+                        <ul class="list-unstyled" ng-repeat="result in results track by $index">
+                            <li ng-show="result.round_level==1 && result.match==1">{{ result.title}}</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h3>Quote</h3>
+                        <p class="intro-text">
+                            <div>
+                                <p ng-bind-html="description"></p>
+                            </div>
+                        </p>
+                        <h3>Spot</h3>
+                        <address>
+                            9 rue Roger Salengro, Le Bourget, France
+                        </address>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -106,31 +139,16 @@
     <section id="members" class="content-section text-center">
         <div class="download-section">
             <div class="container">
-                <h2>Members</h2>
+                <h2>Crew mates</h2>
                 <div class="col-lg-8" ng-repeat="member in members">
                     <div class="media">
-                      <h3 class="pull-left media-heading">
-                        <a ng-click="show_member(member.slug)">{{ member.name}}</a>
+                      <h3 class="media-heading">
+                        <a href="#vid_promo" class="btn btn-circle page-scroll" ng-click="show_member(member.slug, member.name)">{{ member.name}}
+                        </a>
                       </h3>
                     </div>
                 </div>
             </div>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
         </div>
     </section>
 
@@ -140,11 +158,13 @@
             <div class="col-lg-12">
                 <h2>Footage</h2>
             </div>
-            <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
+            <div id="myModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-body">
-                            <div ng-bind-html="embed"></div>
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <youtube-video video-url="url"></youtube-video>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -157,59 +177,29 @@
                     <hr/>
                     <div class="col-sm-6 col-md-3" ng-repeat="media in group">
                       <div class="media">
-                        <a ng-href="#myModal" ng-click="open(media.id)" class="thumbnail video-list-thumbs" title="{{ media.title }}" data-toggle="modal">
-                          <img style="width: 480px; height: 181px;" ng-src="{{ media.thumbnail_url }}"/>
+                        <a ng-href="#myModal" ng-click="open(media.url)" class="thumbnail video-list-thumbs" title="{{ media.title }}" data-toggle="modal">
+                          <img style="width: 480px; height: 181px;" ng-src="{{ media.thumbnail }}"/>
                           <div ng-switch="media.media_type">
                             <span ng-switch-default class="glyphicon glyphicon-play-circle"></span>
                             <span ng-switch-when="rich" class="glyphicon glyphicon-music"></span>
                             <span ng-switch-when="photo" class="glyphicon glyphicon-camera"></span>
                           </div>
                         </a>
-                        <div class="caption">
-                          <h5 style="margin-top:-10px">
-                            <a ng-href="#myModal" ng-click="open(media.id)" title="{{ media.title }}" data-toggle="modal">{{ media.title | characters:30}}</a>
-                          </h5>
-                        </div>
                         <div style='clear: both;'></div>
                       </div>
                     </div>
-                    </div>
+                </div>
                 <div ng-show='reddit.busy'>Loading data...</div>
             </div>
             <!-- <a type="button" class="btn btn-default" href="">More media</a> -->
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="container content-section text-center">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <h2>Contact</h2>
-                <p>Feel free to email us...</p>
-                <p><a href="mailto:bboy.stats@gmail.com">bboy.stats@gmail.com</a>
-                </p>
-                <ul class="list-inline banner-social-buttons">
-                    <li>
-                        <a href="https://twitter.com/bboyrankingz" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
-                    </li>
-                    <li>
-                        <a href="https://github.com/bboyrankingz" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
-                    </li>
-                    <li>
-                        <a href="https://www.facebook.com/pages/Total-Feeling-Crew/7585938274" class="btn btn-default btn-lg"><i class="fa fa-google-plus fa-fw"></i> <span class="network-name">Facebook</span></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Map Section -->
-    <div id="map"></div>
 
     <!-- Footer -->
     <footer>
         <div class="container text-center">
-            <p>Copyright &copy; Total Feeling Crew by Bboyrankingz 2015</p>
+            <p>Copyright &copy; Total Feeling Crew by <a href="https://bboyrankingz.com">Bboyrankingz</a> 2015</p>
         </div>
     </footer>
 
@@ -229,13 +219,14 @@
     <script src="site_media/static/bower_components/angular-truncate/src/truncate.js"></script>
     <script src="site_media/static/bower_components/moment/min/moment.min.js"></script>
     <script src="site_media/static/bower_components/angular-moment/angular-moment.min.js"></script>
+    <!-- Include YT library and this directive -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="site_media/static/bower_components/angular-youtube-mb/dist/angular-youtube-embed.min.js"></script>
 
 
     <!-- Plugin JavaScript -->
     <script src="site_media/static/bower_components/jquery.easing/js/jquery.easing.min.js"></script>
 
-    <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
 
     <script src="site_media/static/bower_components/jquery.mb.ytplayer/inc/jquery.mb.YTPlayer.js"></script>
     <script type="text/javascript">
@@ -243,8 +234,6 @@
             $(".player").mb_YTPlayer();
         });
     </script>
-
-
 
 </body>
 
