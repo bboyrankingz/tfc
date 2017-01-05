@@ -19,9 +19,9 @@ app.controller("Media", function($scope, $http, Reddit, $sce) {
           yy: "%d years ago"
       }
   });
-  $scope.reddit = new Reddit('https://bboyrankingz.com/media/search/total%20feeling%20crew/.json');
+  $scope.reddit = new Reddit('https://bboyrankingz.com/media/search/total%20feeling%20crew.json');
 
-  $http.get('https://bboyrankingz.com/crews/members/total-feeling-crew/.json').
+  $http.get('https://bboyrankingz.com/crews/members/total-feeling-crew.json').
     success(function(data, status, headers, config) {
       $scope.members = data["results"];
     });
@@ -35,7 +35,7 @@ app.controller("Media", function($scope, $http, Reddit, $sce) {
 
   $scope.show_member = function(slug) {
     console.log(slug)
-    $scope.reddit = new Reddit('https://bboyrankingz.com/media/search/' + slug + '/.json');
+    $scope.reddit = new Reddit('https://bboyrankingz.com/media/search/' + slug + '.json');
     $scope.reddit.nextPage();
     
   };
